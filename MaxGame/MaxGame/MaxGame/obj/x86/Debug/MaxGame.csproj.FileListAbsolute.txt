@@ -1,0 +1,10 @@
+U:\MaxGame\MaxGame\MaxGame\obj\x86\Debug\ResolveAssemblyReference.cache
+U:\MaxGame\MaxGame\MaxGame\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+U:\MaxGame\MaxGame\MaxGame\bin\x86\Debug\Content\testBox.xnb
+U:\MaxGame\MaxGame\MaxGame\bin\x86\Debug\MaxGame.exe
+U:\MaxGame\MaxGame\MaxGame\bin\x86\Debug\MaxGame.pdb
+U:\MaxGame\MaxGame\MaxGame\obj\x86\Debug\MaxGame.exe
+U:\MaxGame\MaxGame\MaxGame\obj\x86\Debug\MaxGame.pdb
+U:\MaxGame\MaxGame\MaxGame\bin\x86\Debug\Content\whiteBox.xnb
+U:\MaxGame\MaxGame\MaxGame\bin\x86\Debug\Content\enemyBox.xnb
+U:\MaxGame\MaxGame\MaxGame\bin\x86\Debug\Content\daggerSprite.xnb

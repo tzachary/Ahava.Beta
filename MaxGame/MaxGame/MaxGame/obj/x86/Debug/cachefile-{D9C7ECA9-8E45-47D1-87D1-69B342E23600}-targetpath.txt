@@ -1,0 +1,4 @@
+Content\testBox.xnb
+Content\whiteBox.xnb
+Content\enemyBox.xnb
+Content\daggerSprite.xnb
