@@ -107,6 +107,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bolt.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="MainChar.cs" />
     <Compile Include="Dagger.cs" />

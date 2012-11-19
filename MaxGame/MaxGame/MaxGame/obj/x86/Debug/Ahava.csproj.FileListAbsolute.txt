@@ -1,0 +1,12 @@
+C:\Users\tzachary\Documents\GitHub\Ahava.Beta\MaxGame\MaxGame\MaxGame\bin\x86\Debug\Content\testBox.xnb
+C:\Users\tzachary\Documents\GitHub\Ahava.Beta\MaxGame\MaxGame\MaxGame\bin\x86\Debug\Content\whiteBox.xnb
+C:\Users\tzachary\Documents\GitHub\Ahava.Beta\MaxGame\MaxGame\MaxGame\bin\x86\Debug\Content\enemyBox.xnb
+C:\Users\tzachary\Documents\GitHub\Ahava.Beta\MaxGame\MaxGame\MaxGame\bin\x86\Debug\Content\daggerSprite.xnb
+C:\Users\tzachary\Documents\GitHub\Ahava.Beta\MaxGame\MaxGame\MaxGame\bin\x86\Debug\Content\bolt2.xnb
+C:\Users\tzachary\Documents\GitHub\Ahava.Beta\MaxGame\MaxGame\MaxGame\bin\x86\Debug\Content\bolt3.xnb
+C:\Users\tzachary\Documents\GitHub\Ahava.Beta\MaxGame\MaxGame\MaxGame\bin\x86\Debug\MaxGame.exe
+C:\Users\tzachary\Documents\GitHub\Ahava.Beta\MaxGame\MaxGame\MaxGame\bin\x86\Debug\MaxGame.pdb
+C:\Users\tzachary\Documents\GitHub\Ahava.Beta\MaxGame\MaxGame\MaxGame\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\tzachary\Documents\GitHub\Ahava.Beta\MaxGame\MaxGame\MaxGame\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\tzachary\Documents\GitHub\Ahava.Beta\MaxGame\MaxGame\MaxGame\obj\x86\Debug\MaxGame.exe
+C:\Users\tzachary\Documents\GitHub\Ahava.Beta\MaxGame\MaxGame\MaxGame\obj\x86\Debug\MaxGame.pdb

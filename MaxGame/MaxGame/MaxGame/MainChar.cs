@@ -16,9 +16,16 @@ namespace MaxGame
     {
         Texture2D myTexture;
         Texture2D daggerImage;
+        //bolt img's
+        Texture2D boltImg1;
+        //Texture2D boltImg2;
+        //Texture2D boltImg3;
+        //Texture2D boltImg4;
+
         Flipbook idleBook;
         Flipbook attackBook;
         Flipbook jumpBook;
+
         private Vector2 myPosition;
         private Vector2 myVelocity;
         private Vector2 myAcceleration;
@@ -31,12 +38,18 @@ namespace MaxGame
         private Boolean doJump;
         private float LRspeed;
         private Boolean faceRight;
+
         private double dagTimer;
+        private double boltTimer;
+
+        Bolt myBolt = new Bolt();
+
+
         private Game1 myGame;
         private String healthString;
         private int daggerLevel;
 
-        public MainChar(Texture2D texture, Texture2D daggerImg, Vector2 position, Vector2 velocity, Vector2 acceleration, Vector2 setGrav, Vector2 setFric, Vector2 screen, float setLR, Game1 game)
+        public MainChar(Texture2D texture, Texture2D daggerImg, Texture2D boltImg1, Vector2 position, Vector2 velocity, Vector2 acceleration, Vector2 setGrav, Vector2 setFric, Vector2 screen, float setLR, Game1 game)
         {
             myTexture = texture;
             myPosition = position;
@@ -51,6 +64,9 @@ namespace MaxGame
             dagTimer = 0;
             SetUpInput();
             daggerLevel = 1;
+
+            this.boltImg1 = boltImg1;
+
         }
 
         public void SetUpInput()
@@ -65,11 +81,19 @@ namespace MaxGame
 
             GameAction daggerUp = new GameAction(this, this.GetType().GetMethod("DaggerUp"), new object[0]);
 
+            GameAction boltAttack = new GameAction(this, this.GetType().GetMethod("BoltAttack"), new object[0]);
+
+
+
+
             InputManager.AddToKeyboardMap(Keys.Left, left);
             InputManager.AddToKeyboardMap(Keys.Right, right);
             InputManager.AddToKeyboardMap(Keys.Space, jump);
             InputManager.AddToKeyboardMap(Keys.LeftShift, dagger);
             InputManager.AddToKeyboardMap(Keys.Tab, daggerUp);
+            InputManager.AddToKeyboardMap(Keys.B, boltAttack);
+            InputManager.AddToKeyboardMap(Keys.CapsLock, boltAttack);
+
         }
 
         public Texture2D getTex()
@@ -130,16 +154,16 @@ namespace MaxGame
                 }
                 if (daggerLevel == 2)
                 {
-                    Dagger myDagger = new Dagger(daggerImage, myPosition + new Vector2(myTexture.Width / 2, myTexture.Height / 2+50), new Vector2(dagSpeed, 0));
+                    Dagger myDagger = new Dagger(daggerImage, myPosition + new Vector2(myTexture.Width / 2, myTexture.Height / 2 + 50), new Vector2(dagSpeed, 0));
                     myGame.AddDagger(myDagger);
-                    myDagger = new Dagger(daggerImage, myPosition + new Vector2(myTexture.Width / 2, myTexture.Height / 2-50), new Vector2(dagSpeed, 0));
+                    myDagger = new Dagger(daggerImage, myPosition + new Vector2(myTexture.Width / 2, myTexture.Height / 2 - 50), new Vector2(dagSpeed, 0));
                     myGame.AddDagger(myDagger);
                 }
                 if (daggerLevel == 3)
                 {
                     Dagger myDagger = new Dagger(daggerImage, myPosition + new Vector2(myTexture.Width / 2, myTexture.Height / 2 + 90), new Vector2(dagSpeed, 0));
                     myGame.AddDagger(myDagger);
-                    myDagger = new Dagger(daggerImage, myPosition + new Vector2(myTexture.Width / 2, myTexture.Height / 2 +30), new Vector2(dagSpeed, 0));
+                    myDagger = new Dagger(daggerImage, myPosition + new Vector2(myTexture.Width / 2, myTexture.Height / 2 + 30), new Vector2(dagSpeed, 0));
                     myGame.AddDagger(myDagger);
                     myDagger = new Dagger(daggerImage, myPosition + new Vector2(myTexture.Width / 2, myTexture.Height / 2 - 90), new Vector2(dagSpeed, 0));
                     myGame.AddDagger(myDagger);
@@ -148,6 +172,33 @@ namespace MaxGame
                 }
                 dagTimer = 50;
             }
+        }
+
+
+        public void BoltAttack()
+        {
+
+            if (boltTimer < 0)
+            {
+
+                if (faceRight)
+                {
+                    myBolt = new Bolt(boltImg1, myPosition + new Vector2(myTexture.Width / 2, myTexture.Height / 2), new Vector2(0, 0));
+                    myGame.AddBolt(myBolt);
+                }
+                else
+                {
+                    myBolt = new Bolt(boltImg1, myPosition + new Vector2(myTexture.Width - 1000, myTexture.Height / 2), new Vector2(0, 0));
+                    myGame.AddBolt(myBolt);
+                }
+            }
+
+            boltTimer = 100;
+
+
+
+            //myGame.RemoveBolt(myBolt);
+
         }
 
         public void DaggerUp()
@@ -162,6 +213,7 @@ namespace MaxGame
                 dagTimer = 10;
             }
         }
+
 
         public void Update(GameTime elapsedTime)
         {
@@ -192,6 +244,14 @@ namespace MaxGame
                 }
             }
             dagTimer -= 1;
+            boltTimer -= 1;
+
+
+            if (boltTimer == 95)
+            {
+                myGame.RemoveBolt(myBolt);
+            }
+
             myPosition += myVelocity;
             myVelocity += myAcceleration;
         }

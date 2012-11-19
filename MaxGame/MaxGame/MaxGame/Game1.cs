@@ -21,6 +21,7 @@ namespace MaxGame
         MainChar main;
         Enemy enemy1;
         List<Dagger> myDaggers = new List<Dagger>();
+        List<Bolt> myBolts = new List<Bolt>();
         List<Enemy> myEnemies = new List<Enemy>();
 
         public Game1()
@@ -44,6 +45,12 @@ namespace MaxGame
             base.Initialize();
         }
 
+
+        public void AddBolt(MaxGame.Bolt b)
+        {
+            myBolts.Add(b);
+        }
+
         public void AddDagger(Dagger s)
         {
             myDaggers.Add(s);
@@ -52,6 +59,11 @@ namespace MaxGame
         public void RemoveDagger(Dagger s)
         {
             myDaggers.Remove(s);
+        }
+
+        public void RemoveBolt(Bolt b)
+        {
+            myBolts.Remove(b);
         }
 
         public void AddEnemy(Enemy e)
@@ -92,6 +104,22 @@ namespace MaxGame
             return false;
         }
 
+
+
+        public Boolean CollisionBoltAndEnemy(Bolt B, Enemy E)
+        {
+            Vector2 MPos = B.getPosition();
+            Vector2 EPos = E.getPosition();
+            if (MPos.X + (B.getBolt1().Width) > EPos.X && MPos.Y + (B.getBolt1().Height) > EPos.Y && MPos.X + (B.getBolt1().Width) < EPos.X + E.getTex().Width && MPos.Y + (B.getBolt1().Height) < EPos.Y + E.getTex().Height
+                || MPos.X + (B.getBolt1().Width) > EPos.X && MPos.Y > EPos.Y && MPos.X + (B.getBolt1().Width) < EPos.X + E.getTex().Width && MPos.Y < EPos.Y + E.getTex().Height
+                || MPos.X > EPos.X && MPos.Y + (B.getBolt1().Height) > EPos.Y && MPos.X < EPos.X + E.getTex().Width && MPos.Y + (B.getBolt1().Height) < EPos.Y + E.getTex().Height
+                || MPos.X > EPos.X && MPos.Y > EPos.Y && MPos.X < EPos.X + E.getTex().Width && MPos.Y < EPos.Y + E.getTex().Height)
+            {
+                return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
@@ -101,8 +129,8 @@ namespace MaxGame
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            main = new MainChar(Content.Load<Texture2D>("testBox"), Content.Load<Texture2D>("daggerSprite"), new Vector2(100f, 100f), new Vector2(0,0), new Vector2(0,0), new Vector2(0,-.2f), new Vector2(.5f,0), new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), 10f, this);
-            enemy1 = new Enemy(Content.Load<Texture2D>("enemyBox"), new Vector2(700, 100), new Vector2(-.5f,0), new Vector2(0, -.2f), new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), this);
+            main = new MainChar(Content.Load<Texture2D>("testBox"), Content.Load<Texture2D>("daggerSprite"), Content.Load<Texture2D>("bolt2"), new Vector2(100f, 100f), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, -.2f), new Vector2(.5f, 0), new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), 10f, this);
+            enemy1 = new Enemy(Content.Load<Texture2D>("enemyBox"), new Vector2(700, 100), new Vector2(-.5f, 0), new Vector2(0, -.2f), new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), this);
             AddEnemy(enemy1);
             // TODO: use this.Content to load your game content here
         }
@@ -137,13 +165,31 @@ namespace MaxGame
                 s.Update(gameTime);
                 foreach (Enemy e in myEnemies)
                 {
-                    if(CollisionDaggerAndEnemy(s, e))
+                    if (CollisionDaggerAndEnemy(s, e))
                     {
                         e.takeDmg(s.getDamage());
                         toBeRemoved = s;
                     }
                 }
             }
+
+            //tried to mimic logic for dagger with the bolt
+            Bolt toRemove = null;
+            //Dagger toBeRemoved = null;
+            foreach (Bolt b in myBolts)
+            {
+                b.Update(gameTime);
+                foreach (Enemy e in myEnemies)
+                {
+                    if (CollisionBoltAndEnemy(b, e))
+                    {
+                        e.takeDmg(b.getDamage());
+                        toRemove = b;
+                    }
+                }
+            }
+
+
             RemoveDagger(toBeRemoved);
             Enemy removeThisEnemy = null;
             foreach (Enemy e in myEnemies)
@@ -159,6 +205,7 @@ namespace MaxGame
                 }
             }
             RemoveEnemy(removeThisEnemy);
+
             /*enemy1.Update(gameTime);
             if(CollisionMainAndEnemy(main, enemy1))
             {
@@ -182,6 +229,11 @@ namespace MaxGame
             {
                 s.Draw(spriteBatch);
             }
+
+            foreach (Bolt b in myBolts)
+            {
+                b.Draw(spriteBatch);
+            }
             foreach (Enemy e in myEnemies)
             {
                 e.Draw(spriteBatch);
@@ -189,7 +241,7 @@ namespace MaxGame
             //enemy1.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
-            
+
         }
     }
 }
