@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C# Express 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaxGame", "MaxGame\MaxGame\MaxGame.csproj", "{C1CB9525-310C-4F5D-B1FA-058D0DB7B516}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ahava", "MaxGame\MaxGame\Ahava.csproj", "{C1CB9525-310C-4F5D-B1FA-058D0DB7B516}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaxGameContent", "MaxGame\MaxGameContent\MaxGameContent.contentproj", "{D9C7ECA9-8E45-47D1-87D1-69B342E23600}"
 EndProject
