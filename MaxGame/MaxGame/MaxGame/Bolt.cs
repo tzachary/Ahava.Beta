@@ -31,6 +31,11 @@ namespace MaxGame
             damage = 175;
         }
 
+        public Bolt()
+        {
+
+        }
+
         public Vector2 getPosition()
         {
             return position;
